@@ -11,6 +11,7 @@ class Job(models.Model):
         ('rejected', 'Rejected'),
         ('offer', 'Offer'),
     ])
+    notes = models.TextField(blank=True, null=True)
     date_applied = models.DateField(auto_now_add=True)
 
     def __str__(self):

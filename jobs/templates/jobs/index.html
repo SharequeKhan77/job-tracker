@@ -13,12 +13,62 @@
 </nav>
 <div class="container mt-4">
     <h1>Job Applications</h1>
+    <div class="row mb-4">
+    <div class="col">
+        <div class="card text-white bg-secondary">
+            <div class="card-body text-center">
+                <h5>Total</h5>
+                <h2>{{ counts.total }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-white bg-primary">
+            <div class="card-body text-center">
+                <h5>Applied</h5>
+                <h2>{{ counts.applied }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-white bg-warning">
+            <div class="card-body text-center">
+                <h5>Interview</h5>
+                <h2>{{ counts.interview }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-white bg-danger">
+            <div class="card-body text-center">
+                <h5>Rejected</h5>
+                <h2>{{ counts.rejected }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card text-white bg-success">
+            <div class="card-body text-center">
+                <h5>Offer</h5>
+                <h2>{{ counts.offer }}</h2>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="mb-3">
+    <a href="/" class="btn btn-secondary btn-sm">All</a>
+    <a href="/?status=applied" class="btn btn-primary btn-sm">Applied</a>
+    <a href="/?status=interview" class="btn btn-warning btn-sm">Interview</a>
+    <a href="/?status=rejected" class="btn btn-danger btn-sm">Rejected</a>
+    <a href="/?status=offer" class="btn btn-success btn-sm">Offer</a>
+    </div>
     <a href="/add/" class="btn btn-primary mb-3">Add Job</a>
     <table class="table table-bordered table-striped">
         <tr>
             <th>Company</th>
             <th>Position</th>
             <th>Status</th>
+            <th>Notes</th>
             <th>Date Applied</th>
             <th>Actions</th>
         </tr>
@@ -27,6 +77,7 @@
             <td>{{ job.company }}</td>
             <td>{{ job.position }}</td>
             <td>{{ job.status }}</td>
+            <td style="max-width: 200px; word-wrap: break-word;">{{ job.notes }}</td>
             <td>{{ job.date_applied }}</td>
             <td>
                 <a href="/update/{{ job.id }}/" class="btn btn-warning btn-sm">Update</a>
@@ -35,7 +86,7 @@
         </tr>
         {% empty %}
         <tr>
-            <td colspan="5">No jobs added yet.</td>
+            <td colspan="6">No jobs added yet.</td>
         </tr>
         {% endfor %}
     </table>

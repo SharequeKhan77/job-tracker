@@ -3,10 +3,24 @@ from django.contrib.auth.decorators import login_required
 from .models import Job
 from .forms import JobForm
 
+
 @login_required(login_url='/login/')
 def index(request):
-    jobs = Job.objects.all()
-    return render(request, 'jobs/index.html', {'jobs': jobs})
+    status = request.GET.get('status')
+    if status:
+        jobs = Job.objects.filter(status=status)
+    else:
+        jobs = Job.objects.all()
+
+    counts = {
+        'total': Job.objects.count(),
+        'applied': Job.objects.filter(status='applied').count(),
+        'interview': Job.objects.filter(status='interview').count(),
+        'rejected': Job.objects.filter(status='rejected').count(),
+        'offer': Job.objects.filter(status='offer').count(),
+    }
+
+    return render(request, 'jobs/index.html', {'jobs': jobs, 'status': status, 'counts': counts})
 
 @login_required(login_url='/login/')
 def add_job(request):
