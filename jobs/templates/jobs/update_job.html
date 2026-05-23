@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Update Job</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', sans-serif; }
+        .navbar { background-color: #2c3e50 !important; }
+        .navbar-brand { color: #3498db !important; font-weight: 700; }
+        .card { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .btn-warning { background-color: #f39c12; border-color: #f39c12; }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Job Tracker</a>
+        <a class="navbar-brand" href="/"><i class="fas fa-briefcase me-2"></i>Job Tracker</a>
     </div>
 </nav>
-<div class="container mt-4">
-    <h1>Update Job Application</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-warning">Update Job</button>
-        <a href="/" class="btn btn-secondary">Cancel</a>
-    </form>
+<div class="container mt-4" style="max-width: 600px">
+    <div class="card p-4">
+        <h3 class="mb-4"><i class="fas fa-edit me-2 text-warning"></i>Update Job Application</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex gap-2 mt-3">
+                <button type="submit" class="btn btn-warning">
+                    <i class="fas fa-save me-1"></i>Update Job
+                </button>
+                <a href="/" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
